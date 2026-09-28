@@ -1,0 +1,140 @@
+{
+  "title": "Удаление активности сеансов пользователей",
+  "properties": {
+    "autoTitle": false,
+    "width": 72,
+    "height": 18
+  },
+  "events": {
+    "OnCreateAtServer": "ПриСозданииНаСервере"
+  },
+  "elements": [
+    {
+      "group": "vertical",
+      "name": "ГруппаОтбор",
+      "showTitle": false,
+      "children": [
+        {
+          "input": "Организация",
+          "path": "Организация",
+          "title": "Организация",
+          "choiceButton": true,
+          "clearButton": true,
+          "horizontalStretch": true
+        },
+        {
+          "input": "Пользователь",
+          "path": "Пользователь",
+          "title": "Пользователь",
+          "choiceButton": true,
+          "clearButton": true,
+          "horizontalStretch": true
+        },
+        {
+          "input": "МинимальныйВозрастМинут",
+          "path": "МинимальныйВозрастМинут",
+          "title": "Минимальный возраст записи, мин."
+        }
+      ]
+    },
+    {
+      "group": "alwaysHorizontal",
+      "name": "ГруппаКоманды",
+      "showTitle": false,
+      "children": [
+        {
+          "button": "ПроверитьЗаписьКнопка",
+          "title": "Проверить",
+          "command": "ПроверитьЗапись"
+        },
+        {
+          "button": "УдалитьЗаписьКнопка",
+          "title": "Удалить запись",
+          "command": "УдалитьЗапись"
+        }
+      ]
+    },
+    {
+      "group": "vertical",
+      "name": "ГруппаРезультат",
+      "title": "Найденная запись",
+      "children": [
+        {
+          "input": "ДатаПоследнейАктивности",
+          "path": "ДатаПоследнейАктивности",
+          "title": "Дата последней активности",
+          "readOnly": true
+        },
+        {
+          "input": "ДатаПоследнейАктивностиУниверсальная",
+          "path": "ДатаПоследнейАктивностиУниверсальная",
+          "title": "Дата последней активности универсальная",
+          "readOnly": true
+        },
+        {
+          "input": "ПредставлениеДокумента",
+          "path": "ПредставлениеДокумента",
+          "title": "Документ",
+          "readOnly": true,
+          "horizontalStretch": true
+        },
+        {
+          "input": "СостояниеЗаписи",
+          "path": "СостояниеЗаписи",
+          "title": "Состояние",
+          "readOnly": true,
+          "horizontalStretch": true
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "Объект",
+      "type": "ExternalDataProcessorObject.УдалениеАктивностиСеансовПользователей",
+      "main": true
+    },
+    {
+      "name": "Организация",
+      "type": "CatalogRef.Организации"
+    },
+    {
+      "name": "Пользователь",
+      "type": "CatalogRef.Пользователи"
+    },
+    {
+      "name": "МинимальныйВозрастМинут",
+      "type": "decimal(10,0)"
+    },
+    {
+      "name": "ЗаписьНайдена",
+      "type": "boolean"
+    },
+    {
+      "name": "ДатаПоследнейАктивности",
+      "type": "dateTime"
+    },
+    {
+      "name": "ДатаПоследнейАктивностиУниверсальная",
+      "type": "dateTime"
+    },
+    {
+      "name": "ПредставлениеДокумента",
+      "type": "string(200)"
+    },
+    {
+      "name": "СостояниеЗаписи",
+      "type": "string(500)"
+    }
+  ],
+  "commands": [
+    {
+      "name": "ПроверитьЗапись",
+      "action": "ПроверитьЗапись"
+    },
+    {
+      "name": "УдалитьЗапись",
+      "action": "УдалитьЗапись"
+    }
+  ]
+}
