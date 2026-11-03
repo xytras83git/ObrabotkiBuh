@@ -10,6 +10,11 @@ function Assert-Matches {
     if ($Text -notmatch $Pattern) { throw $Message }
 }
 
+function Assert-NotMatches {
+    param([string]$Text, [string]$Pattern, [string]$Message)
+    if ($Text -match $Pattern) { throw $Message }
+}
+
 Assert-Matches $objectText `
     'Функция ПолучитьСписокАктуальныхСотрудников\(СтруктураПараметров\)' `
     'В обработке нет метода получения актуальных сотрудников ЗУП.'
@@ -46,5 +51,11 @@ Assert-Matches $objectText `
 Assert-Matches $objectText `
     'СтруктураПараметров\.ТипЗапроса\s*=\s*"ПолучитьСписокАктуальныхСотрудников"' `
     'Запрос списка сотрудников не подключен к диспетчеру запросов.'
+Assert-NotMatches $objectText `
+    '(?<![А-Яа-яA-Za-z0-9_])УчетНДСКлиентСервер\s*\.' `
+    'Статическая ссылка на отсутствующий в ЗУП модуль УчетНДСКлиентСервер ломает создание обработки.'
+Assert-NotMatches $objectText `
+    '(?<![А-Яа-яA-Za-z0-9_])УчетНДСВызовСервераПовтИсп\s*\.' `
+    'Статическая ссылка на бухгалтерский модуль УчетНДСВызовСервераПовтИсп нарушает переносимость обработки.'
 
 Write-Output 'ZUP employee list checks passed.'
